@@ -1,1 +1,4 @@
-console.log(1);
+import Spacing from './spacing';
+
+// Simple, Start.
+Spacing.start();

@@ -4,6 +4,11 @@
   "description": "Measure spacing between elements on webpage",
   "main": "./src/index.ts",
   "scripts": {
+    "build": "webpack --mode development",
+    "prod": "webpack --mode production",
+    "watch": "webpack --watch --mode development",
+    "format": "prettier --write '**/*.{ts,tsx,js,jsx,json,md}'",
+    "ext": "node extensions.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +28,7 @@
   },
   "homepage": "https://github.com/0xbul1/spacing#readme",
   "dependencies": {
+    "babel-loader": "^8.2.3",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
