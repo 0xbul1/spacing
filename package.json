@@ -1,0 +1,32 @@
+{
+  "name": "spacing",
+  "version": "1.0.0",
+  "description": "Measure spacing between elements on webpage",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xbul1/spacing.git"
+  },
+  "keywords": [
+    "spacing",
+    "meature",
+    "spacing",
+    "typescript"
+  ],
+  "author": "0xbul1",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0xbul1/spacing/issues"
+  },
+  "homepage": "https://github.com/0xbul1/spacing#readme",
+  "dependencies": {
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
