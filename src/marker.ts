@@ -81,3 +81,90 @@ function createLine(
   document.body.appendChild(marker);
   document.body.appendChild(value);
 }
+
+export function placeMark(
+  rect1: Rect,
+  rect2: Rect,
+  direction: Direction,
+  value: string,
+  edgeToEdge: boolean = false,
+): void {
+  if (direction === 'top') {
+    let width: number = 1;
+    let height: number = Math.abs(rect1.top - rect2.top);
+    let left: number = Math.floor(Math.min(rect1.right, rect2.left) + Math.max(rect1.left, rect2.left) / 2);
+    let top: number = Math.min(rect1.top, rect2.top);
+    if (edgeToEdge) {
+      if (rect1.top < rect2.top) {
+        return;
+      }
+      if(rect1.right < rect2.left || rect1.left > rect2.right) {
+        return;
+      }
+      height = Math.abs(rect2.bottom - rect1.top);
+      top = Math.min(rect2.bottom, rect1.top);
+    }
+    createLine(width, height, top, left, value, 'x');
+  } else if (direction === 'left') {
+    let width: number = Math.abs(rect1.left - rect2.left);
+    let height: number = 1;
+    let top: number = Math.floor(Math.min(rect1.bottom, rect2.bottom) + Math.max(rect1.top, rect2.top) / 2);
+    let left: number = Math.min(rect1.left, rect2.left);
+    if (edgeToEdge) {
+      if (rect1.left < rect2.left) {
+        return;
+      }
+      if(rect1.bottom < rect2.top || rect1.top > rect2.bottom) {
+        return;
+      }
+      width = Math.abs(rect1.left - rect2.right);
+      left = Math.min(rect2.right, rect1.left);
+    }
+    createLine(width, height, top, left, value, 'y');
+  } else if (direction === 'right') {
+    let width: number = Math.abs(rect1.right - rect2.right);
+    let height: number = 1;
+    let top: number = Math.floor(
+      (Math.min(rect1.bottom, rect2.bottom) + Math.max(rect1.top, rect2.top)) /
+        2
+    );
+    let left: number = Math.min(rect1.right, rect2.right);
+
+    if (edgeToEdge) {
+      if (rect1.left > rect2.right) {
+        return;
+      }
+      // If not overlapping
+      if (rect1.bottom < rect2.top || rect1.top > rect2.bottom) {
+        return;
+      }
+      width = Math.abs(rect1.right - rect2.left);
+    }
+    createLine(width, height, top, left, value, 'y');
+  } else if (direction === 'bottom') {
+    let width: number = 1;
+    let height: number = Math.abs(rect1.bottom - rect2.bottom);
+    let top: number = Math.min(rect1.bottom, rect2.bottom);
+    let left: number = Math.floor(
+      (Math.min(rect1.right, rect2.right) + Math.max(rect1.left, rect2.left)) /
+        2
+    );
+
+    if (edgeToEdge) {
+      if (rect2.bottom < rect1.top) {
+        return;
+      }
+      // If not overlapping
+      if (rect1.right < rect2.left || rect1.left > rect2.right) {
+        return;
+      }
+      height = Math.abs(rect1.bottom - rect2.top);
+    }
+    createLine(width, height, top, left, value, 'x');
+  }
+}
+
+export function removeMarks(): void {
+  document.querySelectorAll<HTMLSpanElement>('.spacing-marker').forEach(function (element) {element.remove()});
+  document.querySelectorAll<HTMLSpanElement>('.spacing-value').forEach(function (element) {element.remove()});
+}
