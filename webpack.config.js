@@ -42,7 +42,7 @@ module.exports = {
   },
   plugins: [
     new webpack.BannerPlugin({
-      banner: `/*!\n * Spacing.js v${version}\n * Copyright (c) 2021 Steven Lei\n * Released under the MIT License.\n*/`,
+      banner: `/*!\n * Spacing.js v${version}\n * Copyright (c) 2021 xuan zhao\n * Released under the MIT License.\n*/`,
       raw: true,
     }),
   ],
